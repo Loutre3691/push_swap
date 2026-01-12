@@ -1,4 +1,3 @@
-#.SILENT :
 NAME = push_swap
 
 SRC = 		

@@ -1,10 +1,31 @@
 // #include <push_swap.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 
+void	error_exit(void)
+{
+	write(2, "Error\n", 6);
+	exit(1);
+}
+
+int     has_duplicate(int nb, int* tab)
+{
+    int i;
+
+    i = 1;
+    while (i < tab)
+    {
+        if (nb == tab[i])
+            error_exit();
+        i++;
+    }
+    return(1);
+}
 long	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	sign;
+	int	    i;
+	int	    sign;
 	long	res;
 
 	i = 0;
@@ -44,18 +65,28 @@ int     ft_isnumber(char *str)
 }
 int main(int argc, char **argv)
 {
-    int i = 1;
+    int     i;
+    long    *tab;
+
+    i = 0;
     if (argc < 2)
         return (0);
-    while (i < argc)
+    tab = malloc(sizeof(long) * (argc - 1));
+    if (!tab)
+        return (1);
+    while (i < argc - 1)
     {
-        if (!ft_isnumber(argv[i]))
-        {    
-            (printf("Error"));
-            return(1);    
-        }
-        printf("%ld\n", ft_atoi(argv[i]));
+        if (!ft_isnumber(argv[i + 1]))
+            error_exit();//permet de stopper le programme si av pa valide
+
+        tab[i] = ft_atoi(argv[i + 1]);
+        if (tab[i] < -2147483648 || tab[i] > 2147483647)
+            error_exit();
+        // printf("argv[%d] = %ld\n", i, tab[i]); 
         i++;
     }
+    if (has_duplicate(tab[i], &argc - 1))
+        printf("argv[%d] = %ld\n", i, tab[i]); 
+
     return(0);
 }
