@@ -9,19 +9,24 @@ void	error_exit(void)
 	exit(1);
 }
 
-int     has_duplicate(int nb, int* tab)
+void     has_duplicate(long *tab, int size)
 {
     int i;
+    int j;
 
-    i = 1;
-    while (i < tab)
+    i = 0;
+    while (i < size)
     {
-        if (nb == tab[i])
-            error_exit();
+        j = i + 1;
+        while (j < size)
+        {
+            if (tab[i] == tab[j])
+                error_exit();
+            j++;
+        }
         i++;
     }
-    return(1);
-}modif
+}
 long	ft_atoi(const char *nptr)
 {
 	int	    i;
@@ -71,22 +76,21 @@ int main(int argc, char **argv)
     i = 0;
     if (argc < 2)
         return (0);
-    tab = malloc(sizeof(long) * (argc - 1));
+    tab = malloc(sizeof(long) * (argc - 1)); //creation de la memoire pour le tableau 
     if (!tab)
         return (1);
     while (i < argc - 1)
     {
         if (!ft_isnumber(argv[i + 1]))
-            error_exit();//permet de stopper le programme si av pa valide
+            error_exit();//permet de stopper le programme si argv pa valide
 
-        tab[i] = ft_atoi(argv[i + 1]);
+        tab[i] = ft_atoi(argv[i + 1]);// envoi chaque valeur transformee en int dans le tableau
         if (tab[i] < -2147483648 || tab[i] > 2147483647)
             error_exit();
-        // printf("argv[%d] = %ld\n", i, tab[i]); 
+        // printf("%ld\n", tab[i]);
         i++;
     }
-    if (has_duplicate(tab[i], &argc - 1))
-        printf("argv[%d] = %ld\n", i, tab[i]); 
-
+    has_duplicate(tab, argc - 1);// faire a la fin pour envoyer le tableau en entier avec les differentes valeur a comparer (doublon)
+     
     return(0);
 }
