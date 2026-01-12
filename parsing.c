@@ -21,7 +21,7 @@ int     has_duplicate(int nb, int* tab)
         i++;
     }
     return(1);
-}
+}modif
 long	ft_atoi(const char *nptr)
 {
 	int	    i;
