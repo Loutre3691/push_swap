@@ -1,7 +1,8 @@
-// #include <push_swap.h>
+#include <push_swap.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdbool.h> 
 
 void	error_exit(void)
 {
@@ -27,7 +28,7 @@ void     has_duplicate(long *tab, int size)
         i++;
     }
 }
-long	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr, bool jsp)
 {
 	int	    i;
 	int	    sign;
@@ -40,6 +41,8 @@ long	ft_atoi(const char *nptr)
 		i++;
 	if (nptr[i] == '-' || nptr[i] == '+')
 	{
+        if (nptr[i] == '-') jsp = true;
+
 		if (nptr[i] == '-')
 			sign *= -1;
 		i++;
@@ -68,11 +71,20 @@ int     ft_isnumber(char *str)
     }
     return (1);
 }
+
 int main(int argc, char **argv)
 {
     int     i;
     long    *tab;
+    bool    jsp = false;
+    t_list *stack_a = malloc(sizeof(t_list));
+    t_list *stack_b = malloc(sizeof(t_list));
 
+
+    if (!stack_b && !stack_a)
+        return 1;
+    memset(stack_a, 0, sizeof(t_list));
+    memset(stack_b, 0, sizeof(t_list));
     i = 0;
     if (argc < 2)
         return (0);
@@ -84,7 +96,7 @@ int main(int argc, char **argv)
         if (!ft_isnumber(argv[i + 1]))
             error_exit();//permet de stopper le programme si argv pa valide
 
-        tab[i] = ft_atoi(argv[i + 1]);// envoi chaque valeur transformee en int dans le tableau
+        tab[i] = ft_atoi(argv[i + 1], jsp);// envoi chaque valeur transformee en int dans le tableau et bool pour gerer le - et le +
         if (tab[i] < -2147483648 || tab[i] > 2147483647)
             error_exit();
         // printf("%ld\n", tab[i]);
