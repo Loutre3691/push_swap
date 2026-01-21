@@ -1,6 +1,7 @@
 NAME = push_swap
 
-SRC = 		
+SRC = parsing.c/
+		
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 OBJ_BONUS = $(SRC_BONUS:%.c=$(OBJ_DIR)/%.o)
