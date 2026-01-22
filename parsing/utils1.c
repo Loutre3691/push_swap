@@ -1,12 +1,6 @@
 #include "push_swap.h"
 
-void	error_exit(void)
-{
-	write(2, "Error\n", 6);
-	exit(1);
-}
-
-int	ft_atoi(const char *nptr)
+int	ft_atoi(const char *nptr, t_list **stack_a)
 {
 	int	    i;
 	int	    sign;
@@ -27,7 +21,7 @@ int	ft_atoi(const char *nptr)
 	{
 		res = (res * 10) + (nptr[i] - '0');
         if (res * sign > INT_MAX || res * sign < INT_MIN)
-            error_exit();
+            error_exit(stack_a);
 		i++;
 	} 
 	return ((int)res * sign);
@@ -61,13 +55,3 @@ int     ft_isnumber(char *str)
     }
     return (1);
 }
-
-void free_split(char **split)
-{
-    int i = 0;
-
-    while (split[i])
-        free(split[i++]);
-    free(split);
-}
-

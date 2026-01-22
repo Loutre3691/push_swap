@@ -1,12 +1,12 @@
 #include "push_swap.h"
 
-t_list	*ft_newlst(int value)
+t_list	*ft_newlst(int value, t_list **stack_a)
 {
     t_list  *new;
 
     new = malloc(sizeof(t_list));
     if (!new)
-        error_exit();
+        error_exit(stack_a);
     new->value = value;
     new->next = NULL ;
     return (new);
@@ -35,6 +35,7 @@ t_list	*ft_lstlast(t_list *lst)
 	return (lst);
 }
 
+// a retirer, juste pour verif :
 void print_stack(t_list *stack)
 {
     while (stack)

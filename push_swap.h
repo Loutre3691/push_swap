@@ -28,14 +28,15 @@ typedef struct s_list
 
 void	ft_parsing(t_list **stack_a, int argc, char **argv);
 char	**ft_split(char const *s, char c);
-void	error_exit(void);
-int		ft_atoi(const char *nptr);
+void	error_exit(t_list **stack);
+int		ft_atoi(const char *nptr, t_list **stack_a);
 int     ft_isnumber(char *str);
 int    	has_duplicate(t_list *stack, int value);
 void	free_split(char **split);
-t_list	*ft_newlst(int value);
+t_list	*ft_newlst(int value, t_list **stack_a);
 void	ft_lstadd_back(t_list **lst, t_list *newlst);
 t_list	*ft_lstlast(t_list *lst);
-void print_stack(t_list *stack);
+void 	print_stack(t_list *stack);
+void	free_stack(t_list **stack);
 
 #endif
