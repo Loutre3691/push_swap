@@ -20,7 +20,7 @@ void	free_stack(t_list **stack)
 	}
 }
 
-void free_split(char **split)
+void	free_split(char **split)
 {
     int i = 0;
 

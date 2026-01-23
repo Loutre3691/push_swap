@@ -1,5 +1,18 @@
 #include "push_swap.h"
 
+int     stack_size(t_list *stack_a)
+{
+    int count;
+
+    count = 0;
+    while (stack_a)
+    {
+        count++;
+        stack_a = stack_a->next;
+    }
+    return(count);
+}
+
 t_list	*ft_newlst(int value, t_list **stack_a)
 {
     t_list  *new;

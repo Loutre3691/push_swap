@@ -24,7 +24,6 @@ void    ft_parsing(t_list **stack_a, int argc, char **argv)
             if (has_duplicate(*stack_a, value))
                 error_exit(stack_a);
             ft_lstadd_back(stack_a, ft_newlst(value, stack_a));
-            print_stack(*stack_a); //a enlever plus tard, pour verif
             j++;
         }
         free_split(split);
