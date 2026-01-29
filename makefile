@@ -1,6 +1,20 @@
 NAME = push_swap
 
-SRC = 		
+SRC = parsing.c \
+	  index.c \
+	  push.c \
+	  rotate.c \
+	  rrotate.c \
+	  swap.c \
+	  free_error.c \
+	  ft_split.c \
+	  parsing.c \
+	  utils1.c \
+	  utils2.c \
+	  disorder.c \
+	  main.c \
+	  
+		
 
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 OBJ_BONUS = $(SRC_BONUS:%.c=$(OBJ_DIR)/%.o)

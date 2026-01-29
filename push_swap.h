@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-chec <fde-chec@student.42.fr>          +#+  +:+       +#+        */
+/*   By: slaabid <slaabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 15:54:12 by fde-chec          #+#    #+#             */
-/*   Updated: 2025/11/14 12:03:06 by fde-chec         ###   ########.fr       */
+/*   Updated: 2026/01/29 12:28:41 by slaabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,39 @@
 # include <string.h>
 # include <unistd.h>
 # include <stddef.h> 
-
+# include <stdio.h>
+# include <limits.h>
 
 typedef struct s_list
 {
-	void			*content;
+	int			value;
+    int         index;  
 	struct s_list	*next;
 }	t_list;
 
-t_list	*ft_lstnew(void *content);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-int		ft_lstsize(t_list *lst);
+void	ft_parsing(t_list **stack_a, int argc, char **argv);
+char	**ft_split(char const *s, char c);
+void	error_exit(t_list **stack);
+int		ft_atoi(const char *nptr, t_list **stack_a);
+int     ft_isnumber(char *str);
+int    	has_duplicate(t_list *stack, int value);
+void	free_split(char **split);
+t_list	*ft_newlst(int value, t_list **stack_a);
+void	ft_lstadd_back(t_list **lst, t_list *newlst);
 t_list	*ft_lstlast(t_list *lst);
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-void	ft_lstclear(t_list **lst, void (*del)(void *));
-void	ft_lstiter(t_list *lst, void (*f)(void *));
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void 	print_stack(t_list *stack);
+void	free_stack(t_list **stack);
+// Parsing
+void ft_parsing(t_list **stack_a, int argc, char **argv);
 
+// Indexation
+void index_stack(t_list **stack);
+
+// Utilitaires
+void print_stack(t_list *stack);
+void free_stack(t_list **stack);
+void error_exit(t_list **stack);
+
+
+int is_sorted(t_list *stack);
 #endif
