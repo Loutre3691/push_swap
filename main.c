@@ -12,7 +12,6 @@ int main(int argc, char **argv)
     if (stack_a)
         ft_algo(&stack_a, &stack_b);
         
-
     return(0);
 }
 
